@@ -1,0 +1,16 @@
+# Ignore environment files
+.env
+
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore logs and database files
+logs/
+*.log
+*.db
+
+# Localization files
+*.pot
+*.mo

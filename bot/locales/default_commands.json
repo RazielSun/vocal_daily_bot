@@ -1,0 +1,14 @@
+{
+    "en": {
+        "start": "Welcome! This is your localized Telegram bot.",
+        "about": "This bot is created using Aiogram. It supports multiple languages. Enjoy!"
+    },
+    "ru": {
+        "start": "Добро пожаловать! Это ваш локализованный Telegram-бот.",
+        "about": "Этот бот создан с использованием Aiogram. Он поддерживает несколько языков. Наслаждайтесь!"
+    },
+    "es": {
+        "start": "¡Bienvenido! Este es tu bot de Telegram localizado.",
+        "about": "Este bot fue creado con Aiogram. Soporta múltiples idiomas. ¡Disfruta!"
+    }
+}
