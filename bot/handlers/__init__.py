@@ -1,5 +1,7 @@
 from aiogram import Router
 
+# Admin handlers
+# import bot.handlers.admin
 
 def get_handlers_router() -> Router:
     from . import start, exercise

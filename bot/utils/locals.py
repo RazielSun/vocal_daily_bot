@@ -4,6 +4,7 @@ import json
 with open("data/translations.json", "r", encoding="utf-8") as f:
     translations = json.load(f)
 
+
 def gettext(key: str, lang: str = "en") -> str:
     """
     Retrieve the message for the given language and key.

@@ -1,5 +1,6 @@
 import os
 import subprocess
+import argparse
 from pathlib import Path
 
 # Paths relative to this script
@@ -26,10 +27,23 @@ def update_translations():
 def compile_translations():
     run(f"pybabel compile -d {LOCALES_DIR}")
 
+def init_args():
+    parser = argparse.ArgumentParser(description="Manage translation files.")
+    parser.add_argument("--extract", action="store_true", help="Extract messages")
+    parser.add_argument("--init", action="store_true", help="Update translations")
+    parser.add_argument("--update", action="store_true", help="Update translations")
+    parser.add_argument("--compile", action="store_true", help="Compile translations")
+    return parser.parse_args()
+
 if __name__ == "__main__":
-    # extract_messages()
-    # init_locale("en")
-    # init_locale("ru")
-    # init_locale("es")
-    # update_translations()
-    compile_translations()
+    args = init_args()
+    if args.extract:
+        extract_messages()
+    if args.init:
+        init_locale("en")
+        init_locale("ru")
+        init_locale("es")
+    if args.update:
+        update_translations()
+    if args.compile:
+        compile_translations()
