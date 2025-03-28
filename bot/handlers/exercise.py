@@ -38,7 +38,7 @@ async def send_next_exercise(user: User, bot: Bot, i18n: I18n):
     ex_idx = progress["exercise"]
     step_idx = progress["step"]
 
-    logging.info(f"User {user.id} - Exercise {ex_idx} - Step {step_idx}")
+    # logging.info(f"User {user.id} - Exercise {ex_idx} - Step {step_idx}")
 
     if ex_idx == 0 and step_idx == 0:
         await bot.send_message(user.id, _cstmgettext(DAILY_TRAIN["text"], user))

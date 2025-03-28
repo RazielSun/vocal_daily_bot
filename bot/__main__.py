@@ -36,6 +36,8 @@ async def setup_webhook() -> None:
     from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
     from aiohttp.web import AppRunner, TCPSite
 
+    logging.info(f"webhook: {settings.webhook_url}")
+
     await bot.set_webhook(
         settings.webhook_url,
         allowed_updates=dp.resolve_used_update_types(),
