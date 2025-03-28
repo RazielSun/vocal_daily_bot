@@ -99,6 +99,8 @@ def parse_exercises(data):
         ex_name = row["name"]
         ex_type = row["type"]
         ex_step_id = row["step_id"]
+        if ex_step_id == "":
+            continue
         ex_audio_id = row["audio_id"]
         ex_image_id = row["image_id"]
         ex_nowait = row["no_wait"]
