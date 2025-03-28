@@ -5,8 +5,6 @@ import json
 from pathlib import Path
 
 # from pydantic_settings import BaseSettings, SettingsConfigDict
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials
 
 # https://stackoverflow.com/questions/27067825/how-to-access-google-spreadsheets-with-a-service-account-credentials
 # https://docs.gspread.org/en/v6.1.3/oauth2.html
@@ -49,6 +47,9 @@ def init_args():
 
 
 def auth_client():
+    import gspread
+    from oauth2client.service_account import ServiceAccountCredentials
+
     scope = [
         "https://spreadsheets.google.com/feeds",
         "https://www.googleapis.com/auth/drive",
