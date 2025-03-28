@@ -20,3 +20,6 @@ data/
 content/
 sources/
 credentials.json
+
+# Replit
+.replit
