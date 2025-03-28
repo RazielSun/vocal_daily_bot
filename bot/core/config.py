@@ -18,6 +18,8 @@ class EnvBaseSettings(BaseSettings):
 class WebhookSettings(EnvBaseSettings):
     USE_WEBHOOK: bool = False
     WEBHOOK_BASE_URL: str = "https://xxx.ngrok-free.app"
+    USE_WEBHOOK_REPLIT: bool = False
+    WEBHOOK_REPL_URL: str = f"https://{os.getenv('REPL_SLUG')}.{os.getenv('REPL_OWNER')}.repl.co"
     WEBHOOK_PATH: str = "/webhook"
     WEBHOOK_SECRET: str = ""
     WEBHOOK_HOST: str = "localhost"
@@ -25,6 +27,8 @@ class WebhookSettings(EnvBaseSettings):
 
     @property
     def webhook_url(self) -> str:
+        if settings.USE_WEBHOOK_REPLIT:
+            return f"{self.WEBHOOK_REPL_URL}{self.WEBHOOK_PATH}"
         if settings.USE_WEBHOOK:
             return f"{self.WEBHOOK_BASE_URL}{self.WEBHOOK_PATH}"
         return f"http://localhost:{settings.WEBHOOK_PORT}{settings.WEBHOOK_PATH}"
