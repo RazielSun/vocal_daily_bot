@@ -1,14 +1,10 @@
 {
-    "en": {
-        "bot_about": "bot_about_LOCME",
-        "bot_description": "bot_description_LOCME"
-    },
-    "ru": {
-        "bot_about": "bot_about_LOCME",
-        "bot_description": "bot_description_LOCME"
-    },
-    "es": {
-        "bot_about": "bot_about_LOCME",
-        "bot_description": "bot_description_LOCME"
-    }
+  "bot_about": {
+    "en": "Daily vocal warm-ups and singing exercises to keep your voice strong and ready to perform.\n",
+    "ru": "Ежедневные вокальные разминки и вокальные упражнения, чтобы ваш голос был сильным и готовым к выступлению.\n"
+  },
+  "bot_description": {
+    "en": "This bot helps you build a consistent vocal routine with daily warm-ups, breathing, and vocal exercises. Great for singers, actors, and anyone who wants to keep their voice in shape!\n",
+    "ru": "Этот бот поможет вам построить последовательную вокальную программу с ежедневными разминками, дыханием и вокальными упражнениями. Отлично подходит для певцов, актеров и всех, кто хочет поддерживать свой голос в форме!\n"
+  }
 }

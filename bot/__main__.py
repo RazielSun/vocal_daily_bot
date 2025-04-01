@@ -5,7 +5,7 @@ import sys
 from bot.core.config import settings
 from bot.core.loader import app, bot, dp
 from bot.handlers import get_handlers_router
-from bot.keyboards.default_commands import remove_default_commands, set_default_commands
+from bot.keyboards.default_commands import remove_default_commands, set_default_commands, set_bot_info
 
 async def on_startup() -> None:
     logging.info("Bot is running...")
@@ -13,6 +13,7 @@ async def on_startup() -> None:
     dp.include_router(get_handlers_router())
 
     await set_default_commands(bot)
+    await set_bot_info(bot)
 
     bot_info = await bot.get_me()
 
