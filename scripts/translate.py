@@ -42,7 +42,7 @@ if __name__ == "__main__":
     if args.init:
         init_locale("en")
         init_locale("ru")
-        init_locale("es")
+        # init_locale("es")
     if args.update:
         update_translations()
     if args.compile:

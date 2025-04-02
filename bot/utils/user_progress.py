@@ -1,14 +1,15 @@
 user_progress = {}
 
+DEFAULT_DATA = {"exercise": -1, "step": -1, "done": False}
 
 def reset_progress(user_id):
     """Reset progress for a new day"""
-    user_progress[user_id] = {"exercise": 0, "step": 0, "done": False}
+    user_progress[user_id] = DEFAULT_DATA
 
 
 def get_progress(user_id):
     """Get user's current exercise step"""
-    return user_progress.get(user_id, {"exercise": 0, "step": 0, "done": False})
+    return user_progress.get(user_id, DEFAULT_DATA)
 
 
 def update_progress(user_id, exercise_idx, step_idx):

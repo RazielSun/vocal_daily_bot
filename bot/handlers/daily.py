@@ -42,8 +42,14 @@ async def send_next_exercise(user: User, bot: Bot, i18n: I18n):
 
     # logging.info(f"User {user.id} - Exercise {ex_idx} - Step {step_idx}")
 
-    if ex_idx == 0 and step_idx == 0:
-        await bot.send_message(user.id, _cstmgettext(DAILY_TRAIN["text"], user))
+    if ex_idx == -1 and step_idx == -1:
+        await bot.send_message(
+            user.id,
+            _cstmgettext(DAILY_TRAIN["text"], user),
+            reply_markup=next_exercise_button(i18n),
+        )
+        update_progress(user.id, 0, 0)
+        return
 
     total_exercises = len(DAILY_TRAIN["exercises"])
     if ex_idx < total_exercises:
@@ -54,27 +60,37 @@ async def send_next_exercise(user: User, bot: Bot, i18n: I18n):
 
         while step_idx < total_steps:
             step_data = exercise_data["steps"][step_idx]
-            step_idx += 1
-
             need_wait = not step_data["no_wait"]
 
-            last_exercise = ex_idx == total_exercises - 1 and step_idx == total_steps
+            last_exercise = (
+                ex_idx == total_exercises - 1 and step_idx == total_steps - 1
+            )
             reply_markup = (
                 (need_wait and not last_exercise) and next_exercise_button(i18n) or None
             )
 
             message = _cstmgettext(step_data["text"], user)
+            formatted_msg = (
+                step_idx == 0
+                and _("exercise %d: %s" % (ex_idx + 1, message))
+                or message
+            )
+
             if step_data["audio"]:
                 await bot.send_audio(
                     user.id,
                     step_data["audio"],
-                    caption=message,
+                    caption=formatted_msg,
                     reply_markup=reply_markup,
                 )
             elif step_data["image"]:
                 pass
             else:
-                await bot.send_message(user.id, message, reply_markup=reply_markup)
+                await bot.send_message(
+                    user.id, formatted_msg, reply_markup=reply_markup
+                )
+
+            step_idx += 1
 
             if need_wait:
                 break
@@ -84,23 +100,6 @@ async def send_next_exercise(user: User, bot: Bot, i18n: I18n):
             step_idx = 0
 
         update_progress(user.id, ex_idx, step_idx)
-
-        # If it's the last in sequence, show the final exercise button
-        # if step == total_exercises - 1:
-        #     await bot.send_message(
-        #         user.id, _("final exercise is done")
-        #     )  # , reply_markup=final_exercise_button) # "✅ Click below for the final exercise!"
-        # else:
-        #     from bot.keyboards.inline import next_exercise_button
-
-        #     await bot.send_message(
-        #         user.id,
-        #         _("click next exercise:"),
-        #         reply_markup=next_exercise_button(i18n),
-        #     )  # "⏭ Click below for the next exercise:"
-    # else:
-    #     from handlers.final import send_final_exercise
-    #     await send_final_exercise(user_id, bot)
 
 
 @router.message(Command("daily"))
@@ -112,7 +111,9 @@ async def start_command(message: types.Message, i18n: I18n):
 @router.callback_query(F.data == "daily")
 async def handle_daily_menu(callback_query: types.CallbackQuery, i18n: I18n):
     """Handles the button click for start exercise"""
-    await callback_query.message.edit_reply_markup(reply_markup=None) # Remove the inline keyboard
+    await callback_query.message.edit_reply_markup(
+        reply_markup=None
+    )  # Remove the inline keyboard
     await send_start_exercise(callback_query.from_user, callback_query.bot, i18n)
     await callback_query.answer()
 

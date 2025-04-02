@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-03-23 15:49+0400\n"
-"PO-Revision-Date: 2025-03-23 15:49+0400\n"
+"POT-Creation-Date: 2025-04-02 17:53+0400\n"
+"PO-Revision-Date: 2025-04-02 17:37+0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
 "Language-Team: ru <LL@li.org>\n"
@@ -19,32 +19,49 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.15.0\n"
 
-#: D:/Developer/vocal_daily/vocal_daily_bot/bot/handlers/exercise.py:27
+#: D:/Developer/vocal_daily/vocal_daily_bot/bot/handlers/course.py:9
+#, fuzzy
+msgid "course message"
+msgstr ""
+
+#: D:/Developer/vocal_daily/vocal_daily_bot/bot/handlers/daily.py:75
 #, python-format
-msgid "🎶 Exercise %(step)d:"
+msgid "exercise %d: %s"
+msgstr "Упражнение %d: %s"
+
+#: D:/Developer/vocal_daily/vocal_daily_bot/bot/handlers/info.py:10
+msgid "info message"
 msgstr ""
 
-#: D:/Developer/vocal_daily/vocal_daily_bot/bot/handlers/exercise.py:48
-msgid "final exercise is done"
-msgstr ""
-
-#: D:/Developer/vocal_daily/vocal_daily_bot/bot/handlers/exercise.py:51
-msgid "click next exercise:"
-msgstr ""
-
-#: D:/Developer/vocal_daily/vocal_daily_bot/bot/handlers/start.py:13
+#: D:/Developer/vocal_daily/vocal_daily_bot/bot/handlers/start.py:15
 msgid "welcome message"
+msgstr "Выберите опцию:"
+
+#: D:/Developer/vocal_daily/vocal_daily_bot/bot/handlers/training.py:10
+msgid "training message"
 msgstr ""
 
-#: D:/Developer/vocal_daily/vocal_daily_bot/bot/handlers/start.py:24
-msgid "about message"
-msgstr ""
-
-#: D:/Developer/vocal_daily/vocal_daily_bot/bot/keyboards/inline.py:8
-msgid "start exercise"
-msgstr ""
-
-#: D:/Developer/vocal_daily/vocal_daily_bot/bot/keyboards/inline.py:15
+#: D:/Developer/vocal_daily/vocal_daily_bot/bot/keyboards/inline/daily_buttons.py:9
 msgid "next exercise"
-msgstr ""
+msgstr "⏭ Дальше"
+
+#: D:/Developer/vocal_daily/vocal_daily_bot/bot/keyboards/inline/menu.py:10
+msgid "daily button"
+msgstr "👄 Ежедневные задания"
+
+#: D:/Developer/vocal_daily/vocal_daily_bot/bot/keyboards/inline/menu.py:11
+msgid "training button"
+msgstr "🏋 Тренировки"
+
+#: D:/Developer/vocal_daily/vocal_daily_bot/bot/keyboards/inline/menu.py:12
+msgid "course button"
+msgstr "🚀 Курсы"
+
+#: D:/Developer/vocal_daily/vocal_daily_bot/bot/keyboards/inline/menu.py:13
+msgid "info button"
+msgstr "📰 О нас"
+
+#: D:/Developer/vocal_daily/vocal_daily_bot/bot/keyboards/inline/menu.py:14
+msgid "support button"
+msgstr "📢 Поддержка"
 
