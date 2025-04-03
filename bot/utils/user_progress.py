@@ -1,6 +1,6 @@
 user_progress = {}
 
-DEFAULT_DATA = {"exercise": -1, "step": -1, "done": False}
+DEFAULT_DATA = { "practice":0, "exercise": -1, "step": -1, "done": False}
 
 def reset_progress(user_id):
     """Reset progress for a new day"""

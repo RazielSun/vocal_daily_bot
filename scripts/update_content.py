@@ -174,7 +174,7 @@ def process_content(exercises, daily):
                 CONTENT_FOLDER, EXERCISES_FOLDER, value["exercises"][i] + ".json"
             )
         daily_array.append(value)
-    filepath = os.path.join(CONTENT_DIR, "daily.json")
+    filepath = os.path.join(CONTENT_DIR, "trainings.json")
     with open(filepath, "w", encoding="utf-8") as f:
         json.dump(daily_array, f, ensure_ascii=False, indent=2)
 

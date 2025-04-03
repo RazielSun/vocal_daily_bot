@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2025-04-02 17:53+0400\n"
+"POT-Creation-Date: 2025-04-03 14:35+0400\n"
 "PO-Revision-Date: 2025-04-02 17:37+0400\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -22,36 +22,45 @@ msgstr ""
 #: D:/Developer/vocal_daily/vocal_daily_bot/bot/handlers/course.py:9
 #, fuzzy
 msgid "course message"
-msgstr ""
-
-#: D:/Developer/vocal_daily/vocal_daily_bot/bot/handlers/daily.py:75
-#, python-format
-msgid "exercise %d: %s"
-msgstr "Упражнение %d: %s"
+msgstr "Раздел находится в разработке"
 
 #: D:/Developer/vocal_daily/vocal_daily_bot/bot/handlers/info.py:10
 msgid "info message"
-msgstr ""
+msgstr "Раздел находится в разработке"
 
 #: D:/Developer/vocal_daily/vocal_daily_bot/bot/handlers/start.py:15
 msgid "welcome message"
 msgstr "Выберите опцию:"
 
-#: D:/Developer/vocal_daily/vocal_daily_bot/bot/handlers/training.py:10
+#: D:/Developer/vocal_daily/vocal_daily_bot/bot/handlers/training.py:18
 msgid "training message"
+msgstr "Выберите тренировку:"
+
+#: D:/Developer/vocal_daily/vocal_daily_bot/bot/handlers/training.py:25
+msgid "invalid index"
 msgstr ""
 
-#: D:/Developer/vocal_daily/vocal_daily_bot/bot/keyboards/inline/daily_buttons.py:9
+#: D:/Developer/vocal_daily/vocal_daily_bot/bot/handlers/training.py:31
+msgid "invalid training"
+msgstr ""
+
+#: D:/Developer/vocal_daily/vocal_daily_bot/bot/handlers/training.py:64
+#, python-format
+msgid "exercise %d: %s"
+msgstr "Упражнение %d: %s"
+
+#: D:/Developer/vocal_daily/vocal_daily_bot/bot/keyboards/inline/daily_buttons.py:15
+#: D:/Developer/vocal_daily/vocal_daily_bot/bot/keyboards/inline/daily_buttons.py:30
 msgid "next exercise"
 msgstr "⏭ Дальше"
 
 #: D:/Developer/vocal_daily/vocal_daily_bot/bot/keyboards/inline/menu.py:10
 msgid "daily button"
-msgstr "👄 Ежедневные задания"
+msgstr "👄 Ежедневные практики"
 
 #: D:/Developer/vocal_daily/vocal_daily_bot/bot/keyboards/inline/menu.py:11
 msgid "training button"
-msgstr "🏋 Тренировки"
+msgstr "🏋 Все Упражнения"
 
 #: D:/Developer/vocal_daily/vocal_daily_bot/bot/keyboards/inline/menu.py:12
 msgid "course button"
