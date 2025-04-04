@@ -119,8 +119,8 @@ async def handle_select_training_menu(callback_query: types.CallbackQuery, callb
     """Handles the select training in training menu"""
     if callback_data.action != "select":
         return
-    await callback_query.message.edit_reply_markup(
-        reply_markup=None
-    )  # Remove the inline keyboard
+    # await callback_query.message.edit_reply_markup(
+    #     reply_markup=None
+    # )  # Remove the inline keyboard
     await select_training(callback_query.from_user, callback_query.bot, callback_data, i18n)
     await callback_query.answer()
