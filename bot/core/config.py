@@ -23,9 +23,14 @@ class WebhookSettings(EnvBaseSettings):
     WEBHOOK_HOST: str = "localhost"
     WEBHOOK_PORT: int = 8080
 
+    USE_RAILWAY: bool = False
+    RAILWAY_PUBLIC_DOMAIN: str = ""
+
     @property
     def webhook_url(self) -> str:
         if settings.USE_WEBHOOK:
+            if settings.USE_RAILWAY:
+                return f"https://{self.RAILWAY_PUBLIC_DOMAIN}{self.WEBHOOK_PATH}"
             return f"{self.WEBHOOK_BASE_URL}{self.WEBHOOK_PATH}"
         return f"http://localhost:{settings.WEBHOOK_PORT}{settings.WEBHOOK_PATH}"
 
