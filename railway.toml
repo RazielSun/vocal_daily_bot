@@ -1,6 +1,2 @@
-[build]
-command = """
-python ./scripts/translation.py --compile &&
-python ./scripts/update_content.py --csv &&
-echo "✅ Build complete"
-"""
+[deploy]
+preDeployCommand = ['./build.sh']
