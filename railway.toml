@@ -1,2 +1,2 @@
 [deploy]
-preDeployCommand = ["python ./scripts/translation.py --compile", "python ./scripts/update_content.py --csv"]
+preDeployCommand = ["python ./scripts/predeploy.py"]

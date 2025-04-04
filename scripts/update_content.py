@@ -230,6 +230,12 @@ def validate_content(exercises, daily):
 
     return result
 
+def deploy_update_content():
+    exercises, daily = get_data_from_csv(parse_exercises, parse_daily)
+
+    if validate_content(exercises, daily):
+        process_content(exercises, daily)
+
 
 if __name__ == "__main__":
     args = init_args()
