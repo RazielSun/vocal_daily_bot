@@ -4,10 +4,14 @@ import logging
 from aiogram import types, Router, F, Bot
 from aiogram.types.user import User
 from aiogram.filters import Command
+from aiogram.enums.parse_mode import ParseMode
 from aiogram.utils.i18n.core import I18n
 from aiogram.utils.i18n import gettext as _
 
-from bot.keyboards.inline.daily_buttons import exercises_list_buttons, next_training_button
+from bot.keyboards.inline.daily_buttons import (
+    exercises_list_buttons,
+    next_training_button,
+)
 from bot.filters.callbacks import TrainingCallbackData
 from bot.core.content import cstmgettext as _cstmgettext, get_training, load_exercise
 
@@ -19,12 +23,14 @@ async def send_training(user: User, bot: Bot, i18n: I18n):
     )
 
 
-async def select_training(user: User, bot: Bot, callback_data: TrainingCallbackData, i18n: I18n):
+async def select_training(
+    user: User, bot: Bot, callback_data: TrainingCallbackData, i18n: I18n
+):
     """Send the next exercise in sequence."""
     if callback_data.index == -1:
         await bot.send_message(user.id, _("invalid index"))
         return
-    
+
     training_id = callback_data.index
     practice = get_training(training_id)
     if not practice:
@@ -41,6 +47,7 @@ async def select_training(user: User, bot: Bot, callback_data: TrainingCallbackD
             user.id,
             _cstmgettext(practice["text"], user),
             reply_markup=next_training_button(training_id, 0, 0, i18n),
+            parse_mode=ParseMode.HTML,
         )
         return
 
@@ -63,9 +70,7 @@ async def select_training(user: User, bot: Bot, callback_data: TrainingCallbackD
             step_idx += 1
             # logging.info(f"[DEBUG] Update User {user.id} - Exercise {ex_idx} - Step {step_idx}")
 
-            last_exercise = (
-                ex_idx == total_exercises - 1 and step_idx == total_steps
-            )
+            last_exercise = ex_idx == total_exercises - 1 and step_idx == total_steps
 
             next_ex_idx = ex_idx
             next_step_idx = step_idx
@@ -75,7 +80,9 @@ async def select_training(user: User, bot: Bot, callback_data: TrainingCallbackD
                 # logging.info(f"[DEBUG] Next User {user.id} - Exercise {next_ex_idx} - Step {next_step_idx}")
 
             reply_markup = (
-                (need_wait and not last_exercise) and next_training_button(training_id, next_ex_idx, next_step_idx, i18n) or None
+                (need_wait and not last_exercise)
+                and next_training_button(training_id, next_ex_idx, next_step_idx, i18n)
+                or None
             )
 
             if step_data["audio"]:
@@ -84,6 +91,7 @@ async def select_training(user: User, bot: Bot, callback_data: TrainingCallbackD
                     step_data["audio"],
                     caption=formatted_msg,
                     reply_markup=reply_markup,
+                    parse_mode=ParseMode.HTML,
                 )
             elif step_data["image"]:
                 await bot.send_photo(
@@ -91,10 +99,14 @@ async def select_training(user: User, bot: Bot, callback_data: TrainingCallbackD
                     step_data["image"],
                     caption=formatted_msg,
                     reply_markup=reply_markup,
+                    parse_mode=ParseMode.HTML,
                 )
             else:
                 await bot.send_message(
-                    user.id, formatted_msg, reply_markup=reply_markup
+                    user.id,
+                    formatted_msg,
+                    reply_markup=reply_markup,
+                    parse_mode=ParseMode.HTML,
                 )
 
             if need_wait:
@@ -115,12 +127,16 @@ async def handle_training_menu(callback_query: types.CallbackQuery, i18n: I18n):
 
 
 @router.callback_query(TrainingCallbackData.filter())
-async def handle_select_training_menu(callback_query: types.CallbackQuery, callback_data: TrainingCallbackData, i18n: I18n):
+async def handle_select_training_menu(
+    callback_query: types.CallbackQuery, callback_data: TrainingCallbackData, i18n: I18n
+):
     """Handles the select training in training menu"""
     if callback_data.action != "select":
         return
     # await callback_query.message.edit_reply_markup(
     #     reply_markup=None
     # )  # Remove the inline keyboard
-    await select_training(callback_query.from_user, callback_query.bot, callback_data, i18n)
+    await select_training(
+        callback_query.from_user, callback_query.bot, callback_data, i18n
+    )
     await callback_query.answer()
