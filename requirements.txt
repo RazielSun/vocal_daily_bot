@@ -1,3 +1,6 @@
 aiogram==3.19.*
+aiohttp
 pydantic_settings
 babel
+requests
+dotenv

@@ -37,6 +37,9 @@ def init_args():
     parser.add_argument(
         "--sources", action="store_true", help="Extract from csv sources."
     )
+    parser.add_argument(
+        "--csv", action="store_true", help="Download fron env link and Extract from csv sources."
+    )
     return parser.parse_args()
 
 
@@ -89,6 +92,35 @@ def get_data_from_sources(ex_func, d_func):
 
     return ex_result, d_result
 
+def get_data_from_csv(ex_func, d_func):
+    import dotenv
+    dotenv.load_dotenv()
+
+    ex_result = {}
+    d_result = {}
+
+    EXERCISES_URL = os.getenv("CONTENT_CSV_URL_EXERCISES")
+    DAILY_URL = os.getenv("CONTENT_CSV_URL_DAILY")
+    if not DAILY_URL or not EXERCISES_URL:
+        print("CONTENT_CSV_URL_EXERCISES or CONTENT_CSV_URL_DAILY are not set in .env file")
+        return ex_result, d_result
+
+    import requests, io
+
+    response = requests.get(EXERCISES_URL)
+    decoded = response.content.decode("utf-8")
+    decoded = io.StringIO(decoded)
+    reader = csv.DictReader(decoded)
+    ex_result = ex_func(reader)
+
+    response = requests.get(DAILY_URL)
+    decoded = response.content.decode("utf-8")
+    decoded = io.StringIO(decoded)
+    reader = csv.DictReader(decoded)
+    d_result = d_func(reader)
+
+    return ex_result, d_result
+
 
 def parse_exercises(data):
     exercises = {}
@@ -96,6 +128,7 @@ def parse_exercises(data):
     for row in data:
         # print(row)
         ex_id = row["id"]
+        # print(ex_id)
         last_row_id = ex_id if ex_id != "" else last_row_id
         ex_name = row["name"]
         ex_type = row["type"]
@@ -201,7 +234,9 @@ def validate_content(exercises, daily):
 if __name__ == "__main__":
     args = init_args()
 
-    if args.sources:
+    if args.csv:
+        exercises, daily = get_data_from_csv(parse_exercises, parse_daily)
+    elif args.sources:
         exercises, daily = get_data_from_sources(parse_exercises, parse_daily)
     else:
         exercises, daily = get_data_from_gdrive(parse_exercises, parse_daily)
