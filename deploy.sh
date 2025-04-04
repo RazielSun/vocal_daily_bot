@@ -4,9 +4,11 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-pip install -r requirements.txt
+# pip install -r requirements.txt
 
 python ./scripts/translation.py --compile
 python ./scripts/update_content.py --csv
+echo "Preparation completed!"
 
-echo "Deploy completed!"
+echo "🚀 Starting bot"
+python -m bot

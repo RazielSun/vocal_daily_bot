@@ -1,2 +1,3 @@
+[build]
+
 [deploy]
-preDeployCommand = ["python ./scripts/predeploy.py"]

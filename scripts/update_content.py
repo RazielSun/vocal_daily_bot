@@ -93,6 +93,7 @@ def get_data_from_sources(ex_func, d_func):
     return ex_result, d_result
 
 def get_data_from_csv(ex_func, d_func):
+    print("Dowloading from CSV...")
     import dotenv
     dotenv.load_dotenv()
 
@@ -123,6 +124,8 @@ def get_data_from_csv(ex_func, d_func):
 
 
 def parse_exercises(data):
+    print("Parse exercises...")
+
     exercises = {}
     last_row_id = ""
     for row in data:
@@ -162,6 +165,8 @@ def parse_exercises(data):
 
 
 def parse_daily(data):
+    print("Parse daily trainings...")
+
     daily = {}
     for row in data:
         d_id = row["id"]
@@ -198,6 +203,7 @@ def process_content(exercises, daily):
         filepath = os.path.join(content_exercises_folder, f"{filename}.json")
         with open(filepath, "w", encoding="utf-8") as f:
             json.dump(v, f, ensure_ascii=False, indent=2)
+            print(f"Saved {filename} to {filepath}")
 
     # print(json.dumps(daily, indent=2))
     daily_array = []
@@ -210,6 +216,7 @@ def process_content(exercises, daily):
     filepath = os.path.join(CONTENT_DIR, "trainings.json")
     with open(filepath, "w", encoding="utf-8") as f:
         json.dump(daily_array, f, ensure_ascii=False, indent=2)
+        print(f"Saved {filename} to {filepath}")
 
 
 def validate_content(exercises, daily):

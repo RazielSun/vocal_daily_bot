@@ -1,1 +1,1 @@
-web: python -m bot
+web: ./deploy.sh
