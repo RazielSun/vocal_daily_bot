@@ -6,6 +6,7 @@ IFS=$'\n\t'
 
 pip install -r requirements.txt
 
-python ./scripts/translate.py --compile
+python ./scripts/translation.py --compile
+python ./scripts/update_content.py --csv
 
 echo "Deploy completed!"
